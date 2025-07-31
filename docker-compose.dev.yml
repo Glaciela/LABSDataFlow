@@ -1,0 +1,30 @@
+version: '2.35'
+
+services:
+  db:
+    image: postgres:17.5-alpine3.22
+    container_name: rxt_postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=${DB_NAME:-rxt_db}
+      - POSTGRES_USER=${DB_USER:-postgres}
+      - POSTGRES_PASSWORD=${DB_PASSWORD:-postgres}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - rxt_network
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'   # Limita a 50% de um núcleo de CPU
+          memory: 512M   # Limita a 512MB de RAM
+
+networks:
+  rxt_network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+ 

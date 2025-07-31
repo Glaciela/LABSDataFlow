@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - RXT</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .dashboard-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .apps-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* Espaço entre as caixas */
+            flex-wrap: wrap;
+        }
+        .app-box {
+            border: 2px solid black;
+            width: 200px;
+            height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            background-color: white;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .app-box:hover {
+            background-color: #333;
+            color: white;
+        }
+        .logout-link {
+            display: block;
+            text-align: center;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-header">
+        <h1>Dashboard de Aplicações - RXT</h1>
+        <p>Bem-vindo, {{ user.username }}!</p>
+    </div>
+
+    <div class="apps-container">
+        <div class="app-box">
+            core
+        </div>
+        <div class="app-box">
+            trânsito
+        </div>
+        <div class="app-box">
+            transporte
+        </div>
+    </div>
+
+    <div class="logout-link">
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit">Sair</button>
+        </form>
